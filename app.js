@@ -12,26 +12,26 @@ var password = 'j6206k03';
 
 console.log(type);
 
-// https://github.com/voodootikigod/node-serialport
-var SerialPort = require("serialport").SerialPort
-var serialPort = new SerialPort("/dev/tty-usbserial1", {
-    baudrate: 9600
-});
+// // https://github.com/voodootikigod/node-serialport
+// var SerialPort = require("serialport").SerialPort
+// var serialPort = new SerialPort("/dev/tty-usbserial1", {
+//     baudrate: 9600
+// });
 
 if ('playlist' != type) {
     throw new Error('Must pass a "playlist" URI, got ' + JSON.stringify(type));
 }
 
-serialPort.on("open", function() {
-    console.log('open');
-    serialPort.on('data', function(data) {
-        console.log('data received: ' + data);
-    });
-    serialPort.write("ls\n", function(err, results) {
-        console.log('err ' + err);
-        console.log('results ' + results);
-    });
-});
+// serialPort.on("open", function() {
+//     console.log('open');
+//     serialPort.on('data', function(data) {
+//         console.log('data received: ' + data);
+//     });
+//     serialPort.write("ls\n", function(err, results) {
+//         console.log('err ' + err);
+//         console.log('results ' + results);
+//     });
+// });
 
 Spotify.login(username, password, function(err, spotify) {
     if (err) throw err;
