@@ -12,5 +12,9 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "John Kilpatrick"
+    "author": "John Kilpatrick",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:jjkilpatrick/spotify-pi-node-radio.git"
+    }
 }
