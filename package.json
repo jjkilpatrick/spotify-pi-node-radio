@@ -1,14 +1,14 @@
 {
-    "name": "pi-node-rfid",
-    "version": "0.0.1",
-    "description": "Pi Node RFID",
-    "main": "app.js",
-    "dependencies": {
-
-    },
-    "devDependencies": {},
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "John Kilpatrick"
+  "name": "pi-node-rfid",
+  "version": "0.0.1",
+  "description": "Pi Node RFID",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {
+    "lame": "~1.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "John Kilpatrick"
 }
