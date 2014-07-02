@@ -1,5 +1,4 @@
-var lame = require('lame')
-var gpio = require('pi-gpio');;
+var lame = require('lame');
 var Speaker = require('speaker');
 var Spotify = require('spotify-web');
 var uri = process.argv[2] || 'spotify:user:jjkilpatrick:playlist:3a62gxG7RUWIBboQP3RMWv';
@@ -45,4 +44,3 @@ Spotify.login(username, password, function(err, spotify) {
         next();
     });
 });
-pi@ r
