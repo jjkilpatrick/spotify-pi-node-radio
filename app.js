@@ -12,6 +12,8 @@ if ('playlist' != type) {
     throw new Error('Must pass a "playlist" URI, got ' + JSON.stringify(type));
 }
 
+socket = io.connect(config.host + ':' + config.port);
+
 Spotify.login(username, password, function(err, spotify) {
     if (err) throw err;
 
