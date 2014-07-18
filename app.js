@@ -4,6 +4,7 @@ var Spotify = require('spotify-web');
 var uri = process.argv[2] || 'spotify:user:jjkilpatrick:playlist:3a62gxG7RUWIBboQP3RMWv';
 var type = Spotify.uriType(uri);
 var config = require('./config');
+var io = require('socket.io-client');
 
 username = config.spotify.username;
 password = config.spotify.password;
@@ -13,6 +14,17 @@ if ('playlist' != type) {
 }
 
 socket = io.connect(config.host + ':' + config.port);
+console.log(config.host + ':' + config.port);
+
+socket.on('connect', function() {
+    console.log('connected');
+
+    socket.on('update', function(data) {
+        console.log(data);
+    });
+
+});
+
 
 Spotify.login(username, password, function(err, spotify) {
     if (err) throw err;

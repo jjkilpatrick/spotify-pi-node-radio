@@ -1,22 +1,23 @@
 {
-  "name": "pi-node-rfid",
-  "version": "0.0.1",
-  "description": "Pi Node RFID",
-  "main": "app.js",
-  "dependencies": {},
-  "devDependencies": {
-    "lame": "~1.1.x",
-    "speaker": "~0.1.x",
-    "spotify-web": "~1.2.x",
-    "serialport": "~1.4.0",
-    "socket.io": "~1.0.6"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "John Kilpatrick",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:jjkilpatrick/spotify-pi-node-radio.git"
-  }
+    "name": "pi-node-rfid",
+    "version": "0.0.1",
+    "description": "Pi Node RFID",
+    "main": "app.js",
+    "dependencies": {},
+    "devDependencies": {
+        "lame": "~1.1.x",
+        "speaker": "~0.1.x",
+        "spotify-web": "~1.2.x",
+        "serialport": "~1.4.0",
+        "socket.io": "~1.0.6",
+        "socket.io-client": "~1.0.6"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "John Kilpatrick",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:jjkilpatrick/spotify-pi-node-radio.git"
+    }
 }
