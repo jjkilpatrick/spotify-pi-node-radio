@@ -16,7 +16,7 @@ if ('playlist' != type) {
 socket = io.connect(config.host + ':' + config.port);
 console.log(config.host + ':' + config.port);
 
-socket.on('connect', function() {
+socket.on('connect', function(socket) {
     console.log('connected');
 
     socket.on('update', function(data) {
