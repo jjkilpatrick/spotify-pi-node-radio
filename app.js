@@ -32,12 +32,19 @@ function createDB() {
 
 function createTable() {
 	console.log('Table created');
-	db.run("CREATE TABLE IF NOT EXISTS spotify (ID INTEGER PRIMARY KEY, Playlist VARCHAR(255), PlaylistID VARCHAR(255))", insertRows);
+	db.run("CREATE TABLE IF NOT EXISTS spotify (ID INTEGER PRIMARY KEY, Playlist VARCHAR(255), PlaylistID VARCHAR(255))");
 }
 
 function insertRows() {
-var stmt = db.prepare("INSERT INTO spotify VALUES (1,'asdawsda2','2adwsda4')");
-stmt.finalize();
+	db = new sqlite3.Database('spotify.sqlite3');
+	var stmt = db.prepare("INSERT INTO spotify VALUES (1,'asdawsda2','2adwsda4')");
+	stmt.finalize();
+	closeDb();
+}
+
+function closeDb() {
+    console.log("closeDb");
+    db.close();
 }
 
 if ('playlist' != type) {
@@ -52,7 +59,7 @@ socket.on('connect', function() {
 
     socket.on('update', function(data) {
         console.log(data);
-	db.run("UPDATE spotify SET playlist = ? WHERE id = ?", "bar", 2);
+        insertRows();
     });
 });
 
