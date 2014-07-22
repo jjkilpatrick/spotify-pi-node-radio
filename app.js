@@ -32,7 +32,12 @@ function createDB() {
 
 function createTable() {
 	console.log('Table created');
-	db.run("CREATE TABLE IF NOT EXISTS spotify (ID INTEGER PRIMARY KEY, Playlist VARCHAR(255), PlaylistID VARCHAR(255))");
+	db.run("CREATE TABLE IF NOT EXISTS spotify (ID INTEGER PRIMARY KEY, Playlist VARCHAR(255), PlaylistID VARCHAR(255))", insertRows);
+}
+
+function insertRows() {
+var stmt = db.prepare("INSERT INTO spotify VALUES (1,'asdawsda2','2adwsda4')");
+stmt.finalize();
 }
 
 if ('playlist' != type) {
@@ -47,6 +52,7 @@ socket.on('connect', function() {
 
     socket.on('update', function(data) {
         console.log(data);
+	db.run("UPDATE spotify SET playlist = ? WHERE id = ?", "bar", 2);
     });
 });
 
@@ -75,7 +81,7 @@ Spotify.login(username, password, function(err, spotify) {
                     .pipe(new lame.Decoder())
                     .pipe(new Speaker())
                     .on('finish', function() {
-                        spotify.disconnect();
+                      //spotify.disconnect();
                     });
             });
         }
