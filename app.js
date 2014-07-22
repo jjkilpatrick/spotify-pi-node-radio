@@ -5,9 +5,35 @@ var uri = process.argv[2] || 'spotify:user:jjkilpatrick:playlist:3a62gxG7RUWIBbo
 var type = Spotify.uriType(uri);
 var config = require('./config');
 var io = require('socket.io-client');
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database(':memory:');
+var fs = require('fs');
+var util = require('util');
 
 username = config.spotify.username;
 password = config.spotify.password;
+
+checkDB();
+
+function checkDB() {
+        fs.exists('./spotify.sqlite3', function(exists){
+		if(!exists){
+			createDB();
+		} else {
+			util.debug('already exists, do nothing');
+		}	
+        });
+}
+
+function createDB() {
+	console.log('DB created');
+	db = new sqlite3.Database('spotify.sqlite3', createTable);
+}
+
+function createTable() {
+	console.log('Table created');
+	db.run("CREATE TABLE IF NOT EXISTS spotify (ID INTEGER PRIMARY KEY, Playlist VARCHAR(255), PlaylistID VARCHAR(255))");
+}
 
 if ('playlist' != type) {
     throw new Error('Must pass a "playlist" URI, got ' + JSON.stringify(type));
@@ -17,19 +43,12 @@ socket = io.connect(config.host + ':' + config.port);
 console.log(config.host + ':' + config.port);
 
 socket.on('connect', function() {
-    console.log('connected');
+    console.log('Connected to Interface');
 
     socket.on('update', function(data) {
         console.log(data);
     });
-
-    socket.on('dog', function(data) {
-        console.log(data);
-    });
-
-
 });
-
 
 Spotify.login(username, password, function(err, spotify) {
     if (err) throw err;
