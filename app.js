@@ -10,17 +10,27 @@ var util = require('util');
 var MongoClient = require('mongodb').MongoClient
     , format = require('util').format;
 
+var SerialPort = require("serialport").SerialPort
+var serialPort = new SerialPort("/dev/ttyACM0", {
+  baudrate: 9600,
+  databits: 8,
+  parity: 'none',
+  stopbits: 1,
+});
+
+serialPort.on("open", function () {
+  serialPort.on('data', function(data) {
+	tag = data.toString();
+	tag.slice(0, 8);
+	console.log(tag);
+	if (tag === '4400E6A56E69') {
+		console.log('matched');
+	}
+  });
+});
 
 username = config.spotify.username;
 password = config.spotify.password;
-
-MongoClient.connect('mongodb://192.168.1.20:27017/test', function(err, db) {
-    if(err) throw err;
-});
-
-if ('playlist' != type) {
-    throw new Error('Must pass a "playlist" URI, got ' + JSON.stringify(type));
-}
 
 socket = io.connect(config.host + ':' + config.port);
 console.log(config.host + ':' + config.port);

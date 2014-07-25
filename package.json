@@ -6,12 +6,13 @@
   "dependencies": {},
   "devDependencies": {
     "lame": "~1.1.x",
-    "speaker": "~0.1.x",
-    "spotify-web": "~1.2.x",
-    "serialport": "~1.4.0",
+    "mongodb": "~1.4.7",
+    "pi-gpio": "0.0.6",
+    "serialport": "^1.4.2",
     "socket.io": "~1.0.6",
     "socket.io-client": "~1.0.6",
-    "mongodb": "~1.4.7"
+    "speaker": "~0.1.x",
+    "spotify-web": "~1.2.x"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
