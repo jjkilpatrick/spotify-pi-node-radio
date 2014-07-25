@@ -10,16 +10,16 @@ var util = require('util');
 var MongoClient = require('mongodb').MongoClient
     , format = require('util').format;
 
-var SerialPort = require("serialport").SerialPort
-var serialPort = new SerialPort("/dev/ttyACM0", {
+var serialport = require("serialport");
+var SerialPort = serialport.SerialPort;
+
+var sp = new SerialPort("/dev/ttyACM0", {
   baudrate: 9600,
-  databits: 8,
-  parity: 'none',
-  stopbits: 1,
+ parser: serialport.parsers.readline("\n")
 });
 
-serialPort.on("open", function () {
-  serialPort.on('data', function(data) {
+sp.on("open", function () {
+  sp.on('data', function(data) {
 	tag = data.toString();
 	tag.slice(0, 8);
 	console.log(tag);
